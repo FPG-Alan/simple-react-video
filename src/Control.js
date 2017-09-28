@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
-import utils from './utils';
-import fsImage from './assets/fullscreen.png';
+ /*eslint-disable */ 
+import utils from 'simple-react-video/lib/utils';
+import fsImage from 'simple-react-video/assets/fullscreen.png';
+ /*eslint-enable */ 
 
 @observer
 export default class Control extends Component{

@@ -1,7 +1,9 @@
 import React from 'react';
 
-import playImg from './assets/play.png';
-import playImg2x from './assets/play@2x.png';
+ /*eslint-disable */ 
+import playImg from 'simple-react-video/assets/play.png';
+import playImg2x from 'simple-react-video/assets/play@2x.png';
+ /*eslint-enable */ 
 
 const PlayBtn = () => {
     return (<div className="vpb-wrapper" >

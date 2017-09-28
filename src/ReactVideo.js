@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { observable, autorun } from 'mobx';
-import utils from './utils';
 
-import Control from './Control';
-import PlayBtn from './PlayBtn';
-import Loading from './Loading';
 
-import './style.scss';
+
+ /*eslint-disable */
+ import utils from 'simple-react-video/lib/utils';
+import Control from 'simple-react-video/lib/Control';
+import PlayBtn from 'simple-react-video/lib/PlayBtn';
+import Loading from 'simple-react-video/lib/Loading';
+
+import 'simple-react-video/assets/style.css';
+ /*eslint-enable */ 
 
 export default class ReactVideo extends Component {
     @observable videoData = {

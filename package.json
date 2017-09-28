@@ -5,8 +5,8 @@
   "main": "lib/index",
   "scripts": {
     "clean": "rimraf lib/*",
-    "copy": "copyfiles -u 1 \"./src/assets/**\" \"./src/assets/fonts/**\" \"./src/style.scss\" ./lib",
-    "build": "set NODE_ENV=production && babel ./src -d lib --ignore '*.spec.js' && npm run copy",
+    "copy": "copyfiles -u 1 \"./src/assets/**\" \"./src/assets/fonts/**\" ./lib",
+    "build": "set NODE_ENV=production && babel ./src -d lib --ignore '*.spec.js' && node-sass ./src/style.scss ./assets/style.css",
     "lint": "eslint ./src",
     "release:major": "npm version prerelease &&  npm publish --tag beta",
     "release:minor": "npm version prerelease && git push --follow-tags && npm publish --tag beta",
@@ -17,7 +17,8 @@
     "react",
     "mobx"
   ],
-  "author": "alan.yang",
+  "repository": "https://github.com/FPG-Alan/simple-react-video",
+  "author": "Alan Yang <alan@fpi.cc> (http://theyy.me/)",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -36,6 +37,7 @@
   "dependencies": {
     "mobx": "^3.3.0",
     "mobx-react": "^4.3.2",
+    "node-sass": "^4.5.3",
     "react": "^15.6.2"
   }
 }
