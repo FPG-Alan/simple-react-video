@@ -1,0 +1,17 @@
+import React from 'react';
+
+import playImg from './assets/play.png';
+import playImg2x from './assets/play@2x.png';
+
+const PlayBtn = () => {
+    return (<div className="vpb-wrapper" >
+        <div className="video-play-button">
+            <div className="icon">
+                <img className='play-icon' src={playImg} srcSet={`${playImg} 1.5x, ${playImg2x} 2x`} />
+            </div>
+        </div>
+    </div>)
+};
+
+
+export default PlayBtn;
