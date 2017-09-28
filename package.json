@@ -5,7 +5,6 @@
   "main": "lib/index",
   "scripts": {
     "clean": "rimraf lib/*",
-    "copy": "copyfiles -u 1 \"./src/assets/**\" \"./src/assets/fonts/**\" ./lib",
     "build": "set NODE_ENV=production && babel ./src -d lib --ignore '*.spec.js' && node-sass ./src/style.scss ./assets/style.css",
     "lint": "eslint ./src",
     "release:major": "npm version prerelease &&  npm publish --tag beta",
@@ -27,7 +26,6 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "copyfiles": "^1.2.0",
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.0",
     "eslint-plugin-import": "^2.7.0",
