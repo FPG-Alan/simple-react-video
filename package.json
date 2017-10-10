@@ -1,6 +1,6 @@
 {
   "name": "simple-react-video",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A simple HTML5 video wrapper use react and mobx",
   "main": "lib/index",
   "scripts": {
