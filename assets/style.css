@@ -205,14 +205,6 @@
       position: relative;
       margin-top: -10px;
       font-size: 16px; }
-  .isDesktop .video-block.square, .isTablet .video-block.square {
-    padding-bottom: 100%; }
-  .isDesktop .video-block.normal, .isTablet .video-block.normal {
-    padding-bottom: 75%; }
-  .isDesktop .video-block.horizontal, .isTablet .video-block.horizontal {
-    padding-bottom: 56.25%; }
-  .isDesktop .video-block.vertical, .isTablet .video-block.vertical {
-    padding-bottom: 177.6%; }
   .video-block.blur {
     filter: blur(10px); }
   .video-block.video-loading .vpb-wrapper .video-play-button {
@@ -333,7 +325,6 @@
         margin-left: 5px;
         width: 15px;
         height: 15px;
-        display: none;
         position: relative;
         top: 2px; }
         .controls .widgets .right-part .fullscreen img {

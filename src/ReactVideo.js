@@ -3,19 +3,20 @@ import { observable, autorun } from 'mobx';
 
 
 
- /*eslint-disable */
- import utils from 'simple-react-video/lib/utils';
-import Control from 'simple-react-video/lib/Control';
-import PlayBtn from 'simple-react-video/lib/PlayBtn';
-import Loading from 'simple-react-video/lib/Loading';
+/*eslint-disable */
+import utils from './utils';
+import Control from './Control';
+import PlayBtn from './PlayBtn';
+import Loading from './Loading';
 
-import 'simple-react-video/assets/style.css';
+import '../assets/style.css';
  /*eslint-enable */ 
 
 export default class ReactVideo extends Component {
     @observable videoData = {
         metadata: {
             duration: 0,
+            radio: 0,
         },
         state: {
             loaded: false,
@@ -45,6 +46,10 @@ export default class ReactVideo extends Component {
         this.checkHandle = this.check.bind(this);
     }
     componentWillMount() {
+        this.options = Object.assign({
+            controls:{},
+        }, this.props);
+
         autorun(() => {
             /* this.actived;
             if (this.actived) {
@@ -103,6 +108,12 @@ export default class ReactVideo extends Component {
                     this.videoBlock.classList.remove('video-loading');
                 }
             }
+
+            if(this.videoData.metadata.radio !== 0){
+                if(this.videoBlock){
+                    this.videoBlock.style.paddingBottom = this.videoData.metadata.radio * 100 + '%';
+                }
+            }
         });
     }
     initVideo(ref) {
@@ -111,6 +122,7 @@ export default class ReactVideo extends Component {
             this.video = ref;
             this.video.addEventListener('loadedmetadata', () => {
                 this.videoData.metadata.duration = this.video.duration;
+                this.videoData.metadata.radio = this.video.videoHeight/this.video.videoWidth;
             });
             this.video.addEventListener('canplay', () => {
                 if (this.videoData.requestPlay) {
@@ -233,7 +245,6 @@ export default class ReactVideo extends Component {
 
     check() {
         if (this.nowStep == this.throttling) {
-            console.log('video check');
             let ct = this.video.currentTime;
             this.ctr.check(this.video, ct);
             if (ct >= 0.1) {
@@ -254,27 +265,26 @@ export default class ReactVideo extends Component {
         this.nowStep = this.nowStep + 1;
     }
     render() {
-        console.log('video render');
         return (
             <div className='wrapper' onMouseEnter={this.onMouseEnterHandle} onMouseLeave={this.onMouseLeaveHandle} ref={(ref) => { this.videoWrapper = ref; }}>
-                <div className={`video-block ${this.props.videoClass}`} ref={(ref) => { this.videoBlock = ref; }} onClick={utils.platform.isDesktop ? this.togglePlayPauseHandle : this.onMouseClickHandle}>
+                <div className={`video-block ${this.options.videoClass}`} ref={(ref) => { this.videoBlock = ref; if(this.options.videoRadio){ref.style.paddingBottom=this.options.videoRadio*100 + '%'}}} onClick={utils.platform.isDesktop ? this.togglePlayPauseHandle : this.onMouseClickHandle}>
 
-                    {this.props.posterSrc && <img className="poster" src={this.props.posterSrc} onError={() => {
+                    {this.options.posterSrc && <img className="poster" src={this.options.posterSrc} onError={() => {
                         if (this.videoBlock) {
                             this.videoBlock.classList.add('poster-error');
                         }
                     }} />}
                     <PlayBtn />
                     <Loading />
-                    <video loop playsInline muted preload='none' ref={(ref) => { this.initVideo(ref) }} id={this.props.flatID} onError={() => {
+                    <video loop playsInline muted preload='none' ref={(ref) => { this.initVideo(ref) }} id={this.options.flatID} onError={() => {
                         if (this.videoBlock) {
                             this.videoBlock.classList.add('video-error');
                         }
                     }}>
-                        <source src={this.props.videoSrc} type={`video/${this.props.videoExt}`} />
+                        <source src={this.options.videoSrc} type={`video/${this.options.videoExt}`} />
                     </video>
                 </div>
-                <Control {...this.props} videoData={this.videoData} seekVideo={this._seek.bind(this)} videoObj={this} ref={(ref) => { this.ctr = ref; }} />
+                <Control {...this.options} videoData={this.videoData} seekVideo={this._seek.bind(this)} videoObj={this} ref={(ref) => { this.ctr = ref; }} />
             </div>)
     }
 }

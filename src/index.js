@@ -1,5 +1,5 @@
  /*eslint-disable */ 
-import ReactVideo from 'simple-react-video/lib/ReactVideo';
+import ReactVideo from './ReactVideo';
  /*eslint-enable */ 
  
 export default ReactVideo;

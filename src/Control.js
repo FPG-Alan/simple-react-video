@@ -3,8 +3,8 @@ import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 
  /*eslint-disable */ 
-import utils from 'simple-react-video/lib/utils';
-import fsImage from 'simple-react-video/assets/fullscreen.png';
+import utils from './utils';
+import fsImage from '../assets/fullscreen.png';
  /*eslint-enable */ 
 
 @observer
@@ -58,7 +58,7 @@ export default class Control extends Component{
         this.proBar.style.transform = `scaleX(${ct / this.props.videoData.metadata.duration})`;
     }
     render() {
-        console.log('video control rerender');
+        // console.log('video control rerender');
         return (
             <div className={`controls ${this.props.controlClass}`} ref={(ref) => { this.ctrdom = ref; }}>
                 <div className='ctrl-bg'></div>

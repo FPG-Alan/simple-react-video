@@ -7,6 +7,8 @@
     "clean": "rimraf lib/*",
     "build": "set NODE_ENV=production && babel ./src -d lib --ignore '*.spec.js' && node-sass ./src/style.scss ./assets/style.css",
     "lint": "eslint ./src",
+    "example": "webpack-dev-server --config example/webpack.config.js --port 8080 --hot --host 0.0.0.0",
+    "build-example": "webpack --config example/webpack.config.js",
     "release:major": "npm version prerelease &&  npm publish --tag beta",
     "release:minor": "npm version prerelease && git push --follow-tags && npm publish --tag beta",
     "release:patch": "npm version prerelease && git push --follow-tags && npm publish --tag beta"
@@ -20,22 +22,36 @@
   "author": "Alan Yang <alan@fpi.cc> (http://theyy.me/)",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^7.1.5",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^0.28.7",
     "eslint": "^4.7.2",
     "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
-    "node-sass": "^4.5.3"
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.7",
+    "react-dom": "^16.0.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "dependencies": {
     "mobx": "^3.3.0",
     "mobx-react": "^4.3.2",
-    "react": "^15.6.2"
+    "react": "^16.0.0"
   }
 }

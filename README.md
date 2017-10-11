@@ -29,3 +29,7 @@
         requestPlay()
 
         requestStop()
+
+### example
+
+    http://theyy.me/lab/simple-react-video/
