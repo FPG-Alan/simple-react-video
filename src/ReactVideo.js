@@ -51,24 +51,20 @@ export default class ReactVideo extends Component {
         }, this.props);
 
         autorun(() => {
-            /* this.actived;
-            if (this.actived) {
+            if (this.videoData.state.actived) {
                 setTimeout(() => {
                     if (utils.platform.isDesktop) {
                         if (!this.mouseenter) {
                             this.onMouseLeaveHandle();
                         }
                     } else {
-                        if (this.actived && !this.videoState.pauseLock && this.videoState.showCtr) {
+                        if (this.videoData.state.actived  && this.showCtr) {
                             this.ctr.ctrdom.style.opacity = 0;
-                            this.videoState.showCtr = false;
+                            this.showCtr = false;
                         }
                     }
-
-
-
-                }, 500);
-            } */
+                }, 1500);
+            }
             // state drive video action
             // ---------------------------------------------
             if (this.videoData.state.playing) {
@@ -212,10 +208,10 @@ export default class ReactVideo extends Component {
         if (utils.platform.isDesktop) {
             this.mouseenter = false;
             if (this.ctr) {
-                /* if (this.actived && !this.videoState.pauseLock && this.videoState.showCtr) {
+                if (this.videoData.state.actived  && this.showCtr) {
                     this.ctr.ctrdom.style.opacity = 0;
-                    this.videoState.showCtr = false;
-                } */
+                    this.showCtr = false;
+                }
             }
         }
 
