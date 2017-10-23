@@ -112,6 +112,11 @@ export default class ReactVideo extends Component {
             }
         });
     }
+    componentWillReceiveProps(nextProps) {
+        this.options = Object.assign({
+            controls: {}
+        }, nextProps);
+    }
     initVideo(ref) {
         if (ref && !this.videoInited) {
             this.videoInited = true;
@@ -143,9 +148,7 @@ export default class ReactVideo extends Component {
     }
     requestStop() {
         if (this.videoInited) {
-            if (this.videoData.state.playing) {
-                this._stopVideo();
-            }
+            this._stopVideo();
         } else {
             this.videoData.requestPlay = false;
         }
@@ -263,7 +266,7 @@ export default class ReactVideo extends Component {
     render() {
         return (
             <div className='wrapper' onMouseEnter={this.onMouseEnterHandle} onMouseLeave={this.onMouseLeaveHandle} ref={(ref) => { this.videoWrapper = ref; }}>
-                <div className={`video-block ${this.options.videoClass}`} ref={(ref) => { this.videoBlock = ref; if(this.options.videoRadio){ref.style.paddingBottom=this.options.videoRadio*100 + '%'}}} onClick={utils.platform.isDesktop ? this.togglePlayPauseHandle : this.onMouseClickHandle}>
+                <div className={`video-block ${this.options.videoClass}`} ref={(ref) => { this.videoBlock = ref; if(this.options.videoRadio){ref&&(ref.style.paddingBottom=this.options.videoRadio*100 + '%')}}} onClick={utils.platform.isDesktop ? this.togglePlayPauseHandle : this.onMouseClickHandle}>
 
                     {this.options.posterSrc && <img className="poster" src={this.options.posterSrc} onError={() => {
                         if (this.videoBlock) {
